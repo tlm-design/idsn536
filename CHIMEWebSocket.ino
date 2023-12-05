@@ -27,7 +27,7 @@ int status = WL_IDLE_STATUS;
 //sensing
 CapacitiveSensor capSensor = CapacitiveSensor(4, 2);  // pin 4 sends electrical energy, pin 2 senses senses a change
 CapacitiveSensor capSensor2 = CapacitiveSensor(4, 8);
-int threshold = 25000;
+int threshold = 2500;
 
 //electromagnet
 #define ENABLE 6  //greenwire 6
@@ -97,8 +97,8 @@ void loop() {
 }
 void getSensorData() {
   // store the value reported by the sensor in a variable
-  float sensorValue = capSensor.capacitiveSensor(30);
-  float sensorValue2 = capSensor2.capacitiveSensor(30);
+  float sensorValue = capSensor.capacitiveSensorRaw(20);
+  float sensorValue2 = capSensor2.capacitiveSensorRaw(20);
   // if the value is greater than the threshold
   Serial.println(sensorValue);
   if (sensorValue > threshold && sensorValue2 > threshold) {
